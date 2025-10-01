@@ -37,7 +37,7 @@ def get_user(user_id):
         current_user_id = int(get_jwt_identity())
         current_user = User.query.get(current_user_id)
         
-        # Solo admin o el mismo usuario pueden ver detalles
+        # Solo administrador o el mismo usuario pueden ver detalles
         if current_user.role != 'administrador' and current_user_id != user_id:
             return jsonify({'error': 'No tienes permiso para ver este usuario'}), 403
         
@@ -139,11 +139,11 @@ def update_user(user_id):
         user = User.query.get_or_404(user_id)
         data = request.json
 
-        # Solo admin o el mismo usuario pueden editar
+        # Solo administrador o el mismo usuario pueden editar
         if current_user.role != 'administrador' and current_user_id != user_id:
             return jsonify({'error': 'Solo puedes editar tu propio perfil'}), 403
         
-        # Solo admin puede cambiar roles
+        # Solo administrador puede cambiar roles
         if 'role' in data and current_user.role != 'administrador':
             return jsonify({'error': 'Solo administradores pueden cambiar roles'}), 403
         
@@ -183,7 +183,7 @@ def delete_user(user_id):
     try:
         current_user_id = int(get_jwt_identity())
         
-        # No permitir que admin se elimine a sí mismo
+        # No permitir que administrador se elimine a sí mismo
         if current_user_id == user_id:
             return jsonify({'error': 'No puedes eliminar tu propia cuenta'}), 400
         

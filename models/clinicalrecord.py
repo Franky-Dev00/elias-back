@@ -8,14 +8,14 @@ class ClinicalRecord(db.Model):
     patient_id = db.Column(db.Integer, db.ForeignKey('patient.id'), nullable=False)
     
     # INFORMACIÓN INMUTABLE DEL MÉDICO (copiada al crear la ficha)
-    doctor_name = db.Column(db.String(120), nullable=False)  # Nombre completo del médico
-    doctor_email = db.Column(db.String(120), nullable=False)  # Email del médico al momento de crear
-    doctor_role = db.Column(db.String(50), nullable=False)   # Rol del médico (medico, administrador)
-    doctor_id_snapshot = db.Column(db.Integer, nullable=True)  # ID original del médico (referencia histórica)
+    doctor_name = db.Column(db.String(120), nullable=False)     # Nombre completo del médico
+    doctor_email = db.Column(db.String(120), nullable=False)    # Email del médico al momento de crear
+    doctor_role = db.Column(db.String(50), nullable=False)      # Rol del médico (medico, administrador)
+    doctor_id_snapshot = db.Column(db.Integer, nullable=True)   # ID original del médico (referencia histórica)
     
     # Información médica opcional (si está disponible)
-    doctor_license = db.Column(db.String(50), nullable=True)  # Número de colegiatura
-    doctor_specialization = db.Column(db.String(100), nullable=True)  # Especialidad
+    doctor_license = db.Column(db.String(50), nullable=True)            # Número de colegiatura
+    doctor_specialization = db.Column(db.String(100), nullable=True)    # Especialidad
     
     # Datos clínicos de la consulta
     visit_date = db.Column(db.DateTime, default=datetime.utcnow, nullable=False)
@@ -41,7 +41,7 @@ class ClinicalRecord(db.Model):
     created_at = db.Column(db.DateTime, default=datetime.utcnow, nullable=False)
     updated_at = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow, nullable=False)
     
-    # Relación con paciente (mantener solo esta relación)
+    # Relación con paciente (se mantiene solo esta relación)
     patient = db.relationship('Patient', back_populates='clinical_records')
     
     def __repr__(self):

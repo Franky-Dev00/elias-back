@@ -1,9 +1,9 @@
 from flask import Blueprint, request, jsonify
 from models.task import Task
 from models.db import db
-from models.responsible import Responsible  # Para validar que el responsable existe
-from flask_jwt_extended import jwt_required, get_jwt_identity  # Para proteger los endpoints
-from utils.permissions import role_required # Importa role requerido para permisos del admin
+from models.responsible import Responsible                      # Para validar que el responsable existe
+from flask_jwt_extended import jwt_required, get_jwt_identity   # Para proteger los endpoints
+from utils.permissions import role_required                     # Importa role requerido para permisos del admin
 
 tasks_bp = Blueprint('tasks', __name__, url_prefix='/tasks')
 
@@ -105,7 +105,7 @@ def update_task(task_id):
 # Eliminar tarea
 @tasks_bp.route("/<int:task_id>", methods=["DELETE"])
 @jwt_required()                           # Protegido con JWT
-@role_required('administrador', 'medico')         # Permite al admin o medico eliminar
+@role_required('administrador', 'medico')         # Permite al administrador o medico eliminar
 def delete_task(task_id):
     try:
         task = Task.query.get_or_404(task_id)

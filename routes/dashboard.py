@@ -30,7 +30,7 @@ def get_stats():
             desc(Patient.created_at)
         ).limit(5).all()
         
-        # Fichas clínicas recientes (últimas 5) - ACTUALIZADO sin JOIN a user
+        # Fichas clínicas recientes (últimas 5)
         recent_records = ClinicalRecord.query.order_by(
             desc(ClinicalRecord.created_at)
         ).limit(5).all()

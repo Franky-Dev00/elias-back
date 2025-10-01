@@ -26,8 +26,7 @@ def get_patient(patient_id):
 
 @patients_bp.route('/', methods=['POST'])
 @jwt_required()
-@role_required('administrador', 'medico', 'tecnico')  # Corregir roles
-def create_patient():
+@role_required('administrador', 'medico', 'tecnico')  # Roles de los user -> administrador, medico, tecnico y administrativo
     try:
         data = request.json
         
@@ -74,7 +73,7 @@ def create_patient():
 
 @patients_bp.route('/<int:patient_id>', methods=['PUT'])
 @jwt_required()
-@role_required('administrador', 'medico', 'tecnico')  # Corregir roles
+@role_required('administrador', 'medico', 'tecnico')  # roles
 def update_patient(patient_id):
     try:
         patient = Patient.query.get_or_404(patient_id)

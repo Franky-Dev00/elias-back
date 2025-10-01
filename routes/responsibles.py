@@ -45,7 +45,7 @@ def get_responsibles():
 def get_responsible(responsible_id):
     try:
         responsible = Responsible.query.get_or_404(responsible_id)
-        return jsonify(serialize_responsible(responsible))  # ← Devuelve el responsable
+        return jsonify(serialize_responsible(responsible))          # Devuelve el responsable
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 

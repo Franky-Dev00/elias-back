@@ -152,7 +152,7 @@ def update_clinical_record(record_id):
         if 'prescriptions' in data:
             record.prescriptions = data['prescriptions']
         if 'observations' in data:
-            record.notes = data['observations']  # Mapear observations a notes
+            record.notes = data['observations']             # Mapear observations a notes
         if 'blood_pressure' in data:
             record.blood_pressure = data['blood_pressure']
         if 'heart_rate' in data:
@@ -202,7 +202,7 @@ def delete_clinical_record(record_id):
         db.session.rollback()
         return jsonify({'error': str(e)}), 500
 
-# Endpoints adicionales para estadísticas
+# Se añaden Endpoints adicionales para estadísticas
 @clinical_records_bp.route('/stats/patient/<int:patient_id>', methods=['GET'])
 @jwt_required()
 def get_patient_stats(patient_id):
