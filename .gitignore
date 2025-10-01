@@ -1,0 +1,45 @@
+# Variables de entorno
+.env
+.env.local
+.env.*.local
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+.venv
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Logs
+*.log
+logs/
+
+# Base de datos local (si usas SQLite para testing)
+*.db
+*.sqlite
+*.sqlite3
+
+# Migraciones temporales
+migrate_*.py
+!migrate_simple.py
+!migrate_appointments.py
+
+# Sistema operativo
+.DS_Store
+Thumbs.db
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
